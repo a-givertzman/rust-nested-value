@@ -1,3 +1,15 @@
+//! # Rust Nested Value
+//! 
+//! Nested structures can store the folloving values inside:
+//! 
+//! - ConstValue - constant values
+//! - MutValue - mutable values
+//! - FetchValue - values fetched from API
+//! - MultiValue - collection, nested structire
+//! 
+//! Any value present in the structure can be accessible by string path  
+//! such 'constants/const-1' or 'api/api-value-1'
+//! 
 //! **For example constants & mutable value:**
 //! 
 //! ```rust
