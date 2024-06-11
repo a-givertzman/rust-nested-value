@@ -1,6 +1,6 @@
 #[cfg(test)]
 
-mod tests {
+mod multi_value {
     use indexmap::IndexMap;
     use log::{warn, info, debug};
     use std::{sync::Once, time::{Duration, Instant}};
@@ -25,7 +25,7 @@ mod tests {
     ///
     /// Testing such functionality / behavior
     #[test]
-    fn test_task_cycle() {
+    fn nested() {
         DebugSession::init(LogLevel::Debug, Backtrace::Short);
         init_once();
         init_each();
@@ -79,6 +79,11 @@ mod tests {
             let result = value.get(key).unwrap();
             assert!(result == target, "\nresult: {:?}\ntarget: {:?}", result, target);
         }
-        test_duration.exit();
+        let key = "v1/v2/f64";
+        let target = Value::F64(333.333333);
+        value.store("me", key, target.clone()).unwrap();
+        let result = value.get(key).unwrap();
+        assert!(result == target, "\nresult: {:?}\ntarget: {:?}", result, target);
+    test_duration.exit();
     }
 }

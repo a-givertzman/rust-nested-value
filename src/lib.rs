@@ -10,9 +10,17 @@
 //! Any value present in the structure can be accessible by string path  
 //! such 'constants/const-1' or 'api/api-value-1'
 //! 
+//! **Installation**
+//! 
+//! ```toml
+//! nested-value = { git = "https://github.com/a-givertzman/rust-nested-value.git", tag = "0.0.3" }
+//! ```
+//! 
 //! **For example constants & mutable value:**
 //! 
-//! ```rust
+//! ```ignore
+//! use crate::{const_value::ConstValue, multi_value::MultiValue, mut_value::MutValue, nested_value::NestedValue};
+//! 
 //! let mut flags = MultiValue::new([
 //!     ("bool-flags", Box::new(MultiValue::new([
 //!         ("flag-true", Box::new(ConstValue::new(true))),
@@ -25,7 +33,7 @@
 //! 
 //! **Example with fetched values:**
 //! 
-//! ```rust
+//! ```ignore
 //! pub fn parse_value(reply: &[u8]) -> Result<serde_json::Value, String> {
 //!     match serde_json::from_slice(reply) {
 //!         Ok(reply) => {
