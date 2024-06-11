@@ -51,6 +51,11 @@ mod multi_value {
             // ("v1/fetch-map", ),
             // ("v1/fetch-map", ),
         ];
+        let target = Value::U64(1234567890);
+        let value = ConstValue::new(target.clone());
+        let result = value.get();
+        assert!(result == target, "\nresult: {:?}\ntarget: {:?}", result, target);
+
         let mut value = MultiValue::new([
             ("u64", Box::new(ConstValue::new(Value::U64(1234567890)))),
             ("i64", Box::new(ConstValue::new(Value::I64(-1234567890)))),
@@ -75,13 +80,13 @@ mod multi_value {
             ]))),
         ]);
         for (key, target) in test_data {
-            let result = value.get(key).unwrap();
+            let result = value.get_(key).unwrap();
             assert!(result == target, "\nresult: {:?}\ntarget: {:?}", result, target);
         }
         let key = "v1/v2/f64";
         let target = Value::F64(333.333333);
         value.store("me", key, target.clone()).unwrap();
-        let result = value.get(key).unwrap();
+        let result = value.get_(key).unwrap();
         assert!(result == target, "\nresult: {:?}\ntarget: {:?}", result, target);
     test_duration.exit();
     }

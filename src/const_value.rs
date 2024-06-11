@@ -21,7 +21,7 @@ impl<T: Clone> ConstValue<T> {
     }
     ///
     /// Returns contained value
-    fn get(&self) -> T {
+    pub fn get(&self) -> T {
         self.value.clone()
     }
 }
@@ -35,13 +35,13 @@ impl<T: Clone> NestedValue<T> for ConstValue<T> {
     }
     //
     //
-    fn init(&mut self, key: &str) {
+    fn init_(&mut self, key: &str) {
         self.id = key.to_owned();
         self.inited = true;
     }
     //
     //
-    fn get(&self, _: &str) -> Result<T, String> {
+    fn get_(&self, _: &str) -> Result<T, String> {
         Ok(self.get())
     }
     //

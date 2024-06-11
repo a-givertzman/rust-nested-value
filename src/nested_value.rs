@@ -6,13 +6,13 @@ pub trait NestedValue<T> {
     fn id(&self) -> String;
     ///
     /// Do not use this method, used for internal purposes
-    fn init(&mut self, key: &str);
+    fn init_(&mut self, key: &str);
     ///
     /// Returns contained value by nested value path
     /// (path required for the MultiValue, in other cases can be empty).
     /// - First call get() method fetches the value.
     /// - Next time returns cached value.
-    fn get(&self, key: &str) -> Result<T, String>;
+    fn get_(&self, key: &str) -> Result<T, String>;
     ///
     /// Stores a new value into the node of the nested values by it's path
     /// (path required for the MultiValue, in other cases can be empty).

@@ -20,8 +20,13 @@ impl<T> MultiValue<T> {
             inited: false,
             values: IndexMap::from(values.map(|(key, value)| (key.to_owned(), value))),
         };
-        me.init(&id);
+        me.init_(&id);
         me
+    }
+    ///
+    /// 
+    pub fn get(&self, key: &str) -> Result<T, String> {
+        self.get_(key)
     }
 }
 //
@@ -34,16 +39,16 @@ impl<T> NestedValue<T> for MultiValue<T> {
     }
     //
     //
-    fn init(&mut self, key: &str) {
+    fn init_(&mut self, key: &str) {
         self.id = key.to_owned();
         for (key, node) in &mut self.values {
-            node.init(&format!("{}/{}", self.id, key))
+            node.init_(&format!("{}/{}", self.id, key))
         }
         self.inited = true;
     }
     //
     //
-    fn get(&self, key: &str) -> Result<T, String> {
+    fn get_(&self, key: &str) -> Result<T, String> {
         let mut keys = key.split('/');
         let key = keys.next().unwrap();
         // println!("{}.get | -> key: {}", self.id, key);
@@ -51,7 +56,7 @@ impl<T> NestedValue<T> for MultiValue<T> {
             Some(node) => {
                 let key: String = keys.map(|v| format!("{}/", v)).collect();
                 // println!("{}.get | key -> : {}", self.id, key);
-                node.get(&key)
+                node.get_(&key)
             }
             None => Err(format!("{}.get | Not found key '{}'", self.id, key)),
         }

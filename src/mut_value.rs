@@ -40,13 +40,13 @@ impl<T: Clone + Debug> NestedValue<T> for MutValue<T> {
     }
     //
     //
-    fn init(&mut self, key: &str) {
+    fn init_(&mut self, key: &str) {
         self.id = key.to_owned();
         self.inited = true;
     }
     //
     //
-    fn get(&self, _: &str) -> Result<T, String> {
+    fn get_(&self, _: &str) -> Result<T, String> {
         Ok(self.value.clone())
     }
     //

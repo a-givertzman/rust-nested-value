@@ -38,13 +38,13 @@ impl<T: Clone> NestedValue<T> for FetchValue<T> {
     }
     //
     //
-    fn init(&mut self, key: &str) {
+    fn init_(&mut self, key: &str) {
         self.id = key.to_owned();
         self.inited = true;
     }
     //
     //
-    fn get(&self, _: &str) -> Result<T, String> {
+    fn get_(&self, _: &str) -> Result<T, String> {
         if self.value.borrow().is_none() {
             match self.request.borrow_mut().fetch(false) {
                 Ok(reply) => {
