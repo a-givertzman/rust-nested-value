@@ -1,6 +1,6 @@
 [package]
-name = "rust-nested-value"
-version = "0.1.0"
+name = "nested-value"
+version = "0.0.2"
 edition = "2021"
 
 [dependencies]
