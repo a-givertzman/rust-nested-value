@@ -29,6 +29,11 @@ impl<T: Clone + Debug> MutValue<T> {
     fn register_edit(&mut self, editor: &str, value: &T) {
         self.edited.push(format!("{}. {} - {} ({:?})", self.edited.len() + 1, Utc::now(), editor, value));
     }
+    ///
+    /// Returns contained value
+    pub fn get(&self) -> T {
+        self.value.clone()
+    }
 }
 //
 //
@@ -47,7 +52,7 @@ impl<T: Clone + Debug> NestedValue<T> for MutValue<T> {
     //
     //
     fn get_(&self, _: &str) -> Result<T, String> {
-        Ok(self.value.clone())
+        Ok(self.get())
     }
     //
     //
