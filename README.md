@@ -27,5 +27,8 @@ such 'root/constants/const-1' or 'root/api/api-value-1'
     ]);
     let key = "bool-flags/flag-1";
     println!("flag: {:?}", flags.get(key));
-    flags.store("example", key, true).unwrap_or_else(|err| println!("example | Store error: {}", err));
+    flags
+        .store("example", key, true)
+        .unwrap_or_else(|err| println!("example | Store error: {}", err));
+    println!("flag: {:?}", flags.get(key));
 ```
