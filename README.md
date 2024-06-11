@@ -7,7 +7,7 @@ Nested structures can storing inside folloving values:
 - FetchValue - values fetched from API
 - MultiValue - collection, nested structire
 
-Any value present ion the structure can be accessible by string path  
+Any value present in the structure can be accessible by string path  
 such 'root/constants/const-1' or 'root/api/api-value-1'
 
 **Example:**
