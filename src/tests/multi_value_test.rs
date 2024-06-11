@@ -23,7 +23,7 @@ mod multi_value {
     ///  - ...
     fn init_each() -> () {}
     ///
-    /// Testing such functionality / behavior
+    /// Testing MultiValue, ConstValue, MutValue get / store methods
     #[test]
     fn nested() {
         DebugSession::init(LogLevel::Debug, Backtrace::Short);
