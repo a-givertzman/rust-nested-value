@@ -2,8 +2,7 @@
 
 mod multi_value {
     use indexmap::IndexMap;
-    use log::{warn, info, debug};
-    use std::{sync::Once, time::{Duration, Instant}};
+    use std::{sync::Once, time::Duration};
     use testing::stuff::max_test_duration::TestDuration;
     use debugging::session::debug_session::{DebugSession, LogLevel, Backtrace};
 

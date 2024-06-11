@@ -9,7 +9,7 @@ pub struct ConstValue<T> {
 }
 //
 //
-impl<T> ConstValue<T> {
+impl<T: Clone> ConstValue<T> {
     ///
     /// Returns new instance of the [ConstValue]
     pub fn new(value: T) -> Self {
@@ -18,6 +18,11 @@ impl<T> ConstValue<T> {
             inited: false,
             value,
         }
+    }
+    ///
+    /// Returns contained value
+    fn get(&self) -> T {
+        self.value.clone()
     }
 }
 //
@@ -37,7 +42,7 @@ impl<T: Clone> NestedValue<T> for ConstValue<T> {
     //
     //
     fn get(&self, _: &str) -> Result<T, String> {
-        Ok(self.value.clone())
+        Ok(self.get())
     }
     //
     //
