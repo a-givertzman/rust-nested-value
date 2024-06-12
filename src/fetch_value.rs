@@ -13,7 +13,7 @@ pub struct FetchValue<T> {
 }
 //
 //
-impl<T> FetchValue<T> {
+impl<T: Clone> FetchValue<T> {
     ///
     /// Returns new instance of the [FetchedValue]
     /// - request: ApiRequest - fetches data from the API Server
@@ -27,24 +27,9 @@ impl<T> FetchValue<T> {
             parser,
         }
     }
-}
-//
-//
-impl<T: Clone> NestedValue<T> for FetchValue<T> {
-    //
-    //
-    fn id(&self) -> String {
-        self.id.clone()
-    }
-    //
-    //
-    fn init_(&mut self, key: &str) {
-        self.id = key.to_owned();
-        self.inited = true;
-    }
-    //
-    //
-    fn get_(&self, _: &str) -> Result<T, String> {
+    ///
+    /// Returns fetched / cached value
+    pub fn get(&self) -> Result<T, String> {
         if self.value.borrow().is_none() {
             match self.request.borrow_mut().fetch(false) {
                 Ok(reply) => {
@@ -64,7 +49,27 @@ impl<T: Clone> NestedValue<T> for FetchValue<T> {
             .borrow()
             .clone()
             .unwrap_or_else(|| panic!("{}.get | Internal error - cache not initialised", self.id))
-        )
+        )        
+    }
+}
+//
+//
+impl<T: Clone> NestedValue<T> for FetchValue<T> {
+    //
+    //
+    fn id(&self) -> String {
+        self.id.clone()
+    }
+    //
+    //
+    fn init_(&mut self, key: &str) {
+        self.id = key.to_owned();
+        self.inited = true;
+    }
+    //
+    //
+    fn get_(&self, _: &str) -> Result<T, String> {
+        self.get()
     }
 }
 //
