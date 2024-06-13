@@ -13,7 +13,7 @@
 //! **Installation**
 //! 
 //! ```toml
-//! nested-value = { git = "https://github.com/a-givertzman/rust-nested-value.git", tag = "0.0.3" }
+//! nested-value = { git = "https://github.com/a-givertzman/rust-nested-value.git", tag = "0.0.4" }
 //! ```
 //! 
 //! **For example constants & mutable value:**
