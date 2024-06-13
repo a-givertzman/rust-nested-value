@@ -1,6 +1,6 @@
 //! # Rust Nested Value
 //! 
-//! Nested structures can store the folloving values inside:
+//! Nested structures stores the following values ​​inside:
 //! 
 //! - ConstValue - constant values
 //! - MutValue - mutable values
@@ -8,7 +8,7 @@
 //! - MultiValue - collection, nested structire
 //! 
 //! Any value present in the structure can be accessible by string path  
-//! such 'constants/const-1' or 'api/api-value-1'
+//! such as 'constants/const-1' or 'api/api-value-1'
 //! 
 //! **Installation**
 //! 
