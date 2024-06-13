@@ -14,10 +14,10 @@ such as 'root/constants/const-1' or 'root/api/api-value-1'
 
 ```rust
     let value = ConstValue::new(Value::Null);
-    println!("const value: {:?}", value.get(""));
+    println!("const value: {:?}", value.get());
 
     let value = ConstValue::new(12345.6789012345);
-    println!("const value: {:?}", value.get(""));
+    println!("const value: {:?}", value.get());
 
     let mut flags = MultiValue::new([
         ("bool-flags", Box::new(MultiValue::new([
