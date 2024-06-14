@@ -5,7 +5,7 @@ use crate::nested_value::NestedValue;
 pub struct MultiValue<T> {
     id: String,
     inited: bool,
-    values: IndexMap<String, Box<dyn NestedValue<T>>>
+    values: IndexMap<String, Box<dyn NestedValue<T>>>,
 }
 //
 //

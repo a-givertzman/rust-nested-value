@@ -3,6 +3,7 @@ use chrono::Utc;
 use crate::nested_value::NestedValue;
 ///
 /// Contains the mutable value, returns on call get() method
+#[derive(Clone)]
 pub struct MutValue<T> {
     id: String,
     inited: bool,

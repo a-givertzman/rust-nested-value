@@ -2,6 +2,7 @@ use std::fmt::Debug;
 use crate::nested_value::NestedValue;
 ///
 /// Contains the constant value, returns on call get() method
+#[derive(Clone)]
 pub struct ConstValue<T> {
     id: String,
     inited: bool,
