@@ -34,6 +34,15 @@ impl<T: Clone + Debug> MutValue<T> {
     pub fn get(&self) -> T {
         self.value.clone()
     }
+    //
+    //
+    fn store(&mut self, editor: &str, value: T) -> Result<(), String> {
+        self.register_edit(editor, &value);
+        self.value = value;
+        // self.edited.push(format!("{}. {} - {} ({:?})", self.edited.len() + 1, Utc::now(), editor, value));
+        // println!("{}.store | edited: {:#?}", self.id, self.edited);
+        Ok(())
+    }
 }
 //
 //
