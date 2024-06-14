@@ -34,9 +34,9 @@ impl<T: Clone + Debug> MutValue<T> {
     pub fn get(&self) -> T {
         self.value.clone()
     }
-    //
-    //
-    fn store(&mut self, editor: &str, value: T) -> Result<(), String> {
+    ///
+    /// Stores a new value
+    pub fn store(&mut self, editor: &str, value: T) -> Result<(), String> {
         self.register_edit(editor, &value);
         self.value = value;
         // self.edited.push(format!("{}. {} - {} ({:?})", self.edited.len() + 1, Utc::now(), editor, value));
@@ -66,11 +66,12 @@ impl<T: Clone + Debug> NestedValue<T> for MutValue<T> {
     //
     //
     fn store(&mut self, editor: &str, _: &str, value: T) -> Result<(), String> {
-        self.register_edit(editor, &value);
-        self.value = value;
-        // self.edited.push(format!("{}. {} - {} ({:?})", self.edited.len() + 1, Utc::now(), editor, value));
-        // println!("{}.store | edited: {:#?}", self.id, self.edited);
-        Ok(())
+        self.store(editor, value)
+        // self.register_edit(editor, &value);
+        // self.value = value;
+        // // self.edited.push(format!("{}. {} - {} ({:?})", self.edited.len() + 1, Utc::now(), editor, value));
+        // // println!("{}.store | edited: {:#?}", self.id, self.edited);
+        // Ok(())
     }
     //
     //
