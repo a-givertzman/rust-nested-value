@@ -3,12 +3,15 @@ use chrono::Utc;
 use crate::nested_value::NestedValue;
 ///
 /// Contains the mutable value, returns on call get() method
+/// - if editors are specified, store() method will be accepted only from defined editor,
+///   otherwise store() will panic.
 #[derive(Clone)]
 pub struct MutValue<T> {
     id: String,
     inited: bool,
     value: T,
     edited: Vec<String>,
+    editors: Vec<String>,
 }
 //
 //
@@ -21,6 +24,20 @@ impl<T: Clone + Debug> MutValue<T> {
             inited: false,
             value: value.clone(),
             edited: vec![],
+            editors: vec![],
+        };
+        Self::register_edit(&mut me, "self", &value);
+        me
+    }
+    ///
+    /// Returns new instance of the [MutValue] with allowed editors
+    pub fn with_editors(value: T, editors: Vec<String>) -> Self {
+        let mut me = Self {
+            id: "MutValue".to_owned(),
+            inited: false,
+            value: value.clone(),
+            edited: vec![],
+            editors
         };
         Self::register_edit(&mut me, "self", &value);
         me
@@ -38,6 +55,11 @@ impl<T: Clone + Debug> MutValue<T> {
     ///
     /// Stores a new value
     pub fn store(&mut self, editor: &str, value: T) -> Result<(), String> {
+        if !self.editors.is_empty() {
+            if !self.editors.contains(&editor.to_owned()) {
+                panic!("{}.store | Write access denied for editor '{}' ", self.id, editor);
+            }
+        }
         self.register_edit(editor, &value);
         self.value = value;
         // self.edited.push(format!("{}. {} - {} ({:?})", self.edited.len() + 1, Utc::now(), editor, value));
